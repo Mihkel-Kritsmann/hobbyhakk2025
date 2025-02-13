@@ -3,14 +3,11 @@ from transformers import pipeline
 
 
 class LLM:
-    messages = [
-    {"role": "user", "content": "Who are you?"},
-    ]
     def __init__(self):
         # Initialize local model
-        self.pipe = pipeline("text-generation", model="deepseek-ai/DeepSeek-R1", trust_remote_code=True)
+        self.pipe = pipeline("image-text-to-text", model="unsloth/Llama-3.2-11B-Vision-unsloth-bnb-4bit")
     
     def generate(self, text):
-        response = self.pipe(messages)
-        return response
+        response = self.pipe(text)
+        return response[0]['generated_text']
 

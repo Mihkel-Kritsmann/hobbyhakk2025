@@ -5,8 +5,8 @@ from apis.llm import LLM
 from apis.translate import Translate
 from apis.neurokone import Neurokone
 
+
 app = Flask(__name__)
-Bootstrap(app)
 
 # Initialize services
 llm_service = LLM()
@@ -28,25 +28,20 @@ def process():
         # Process with LLM
         llm_response = llm_service.generate(text)
         
-        # Translate if needed
-        if target_language != 'en':
-            translated_text = translate_service.translate(
-                llm_response, 
-                target_language
-            )
-        else:
-            translated_text = llm_response
+        # Translate into estonian
+        
+        #translated_text = translate_service.translate( llm_response, target_language)
         
         # Generate speech
         audio_file = speech_service.text_to_speech(
-            translated_text,
+            "Tere minu nimi on Mari",
             speaker=speaker
         )
         
         return jsonify({
             'original_text': text,
             'llm_response': llm_response,
-            'translated_text': translated_text,
+            'translated_text': "Not working",
             'audio_file': audio_file
         })
     
