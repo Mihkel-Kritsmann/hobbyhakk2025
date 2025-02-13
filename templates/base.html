@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Text Processing</title>
-    {% block styles %}
+    {% extends "bootstrap/base.html" %}
+    {% block title %}AI Text Processing{% endblock %}
 
+    {% block styles %}
     <style>
         .container { margin-top: 50px; }
         .response-box { margin-top: 20px; }
         .loading { display: none; }
     </style>
     {% endblock %}
+
 </head>
 <body>
     <div class="container">
-        {% block content %}{% endblock %}
+        {% block content %}
+        {% endblock %}
     </div>
     {% block scripts %}
     {% endblock %}
