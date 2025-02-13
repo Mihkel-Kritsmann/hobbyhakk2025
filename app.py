@@ -4,6 +4,7 @@ from flask_bootstrap import Bootstrap
 from apis.llm import LLM
 from apis.translate import Translate
 from apis.neurokone import Neurokone
+import os
 
 
 app = Flask(__name__)
@@ -34,7 +35,7 @@ def process():
         
         # Generate speech
         audio_file = speech_service.text_to_speech(
-            "Tere minu nimi on Mari",
+            llm_response,
             speaker=speaker
         )
         
