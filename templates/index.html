@@ -10,15 +10,6 @@
                 <textarea class="form-control" id="inputText" rows="4" required></textarea>
             </div>
             <div class="form-group">
-                <label for="targetLanguage">Target Language:</label>
-                <select class="form-control" id="targetLanguage">
-                    <option value="en">English</option>
-                    <option value="es">Spanish</option>
-                    <option value="fr">French</option>
-                    <option value="de">German</option>
-                </select>
-            </div>
-            <div class="form-group">
                 <label for="speaker">Speaker:</label>
                 <select class="form-control" id="speaker">
                     <!-- Will be populated dynamically -->
@@ -38,13 +29,6 @@
             <div id="llmResponse" class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">LLM Response</h5>
-                    <p class="card-text"></p>
-                </div>
-            </div>
-            
-            <div id="translatedResponse" class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Translated Text</h5>
                     <p class="card-text"></p>
                 </div>
             </div>
@@ -85,7 +69,6 @@
         loading.style.display = 'block';
         
         const text = document.getElementById('inputText').value;
-        const targetLanguage = document.getElementById('targetLanguage').value;
         const speaker = document.getElementById('speaker').value;
         
         try {
@@ -96,7 +79,6 @@
                 },
                 body: JSON.stringify({
                     text: text,
-                    target_language: targetLanguage,
                     speaker: speaker
                 })
             });
@@ -104,7 +86,6 @@
             const data = await response.json();
             
             document.querySelector('#llmResponse .card-text').textContent = data.llm_response;
-            document.querySelector('#translatedResponse .card-text').textContent = data.translated_text;
             
             const audioPlayer = document.getElementById('audioPlayer');
             audioPlayer.src = data.audio_file;
